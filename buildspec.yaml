@@ -1,7 +1,4 @@
 version: 0.2
-  artifacts:
-    files:
-      - imagedefinitions.json
 
 phases:
   install:
@@ -18,13 +15,6 @@ phases:
       - echo "Building the Docker image..."
       - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
       - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
-      - apt-get install jq -y
-      - ContainerName="YOUR_CONTAINER_NAME"
-      - ImageURI=$(cat imageDetail.json | jq -r '.ImageURI')
-      - printf '{"name":"CONTAINER_NAME","imageUri":"IMAGE_URI"}' > imagedefinitions.json
-      - sed -i -e "s|CONTAINER_NAME|$ContainerName|g" imagedefinitions.json
-      - sed -i -e "s|IMAGE_URI|$ImageURI|g" imagedefinitions.json
-      - cat imagedefinitions.json      
   post_build:
     commands:
       - echo "Pushing Docker image..."
