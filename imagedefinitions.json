@@ -1,6 +1,6 @@
 [
   {
-    "name": "WebApp",
+    "name": "flask",
     "imageUri": "947755451382.dkr.ecr.us-east-2.amazonaws.com/cloud-security:latest"
   }
 ]
